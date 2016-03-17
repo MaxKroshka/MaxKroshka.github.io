@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+</head>
+<body>
+  <script>
+  $(document).ready(function(){
+  var langs = { Arabic: "مرحبا بالعالم!", Bosnian: "zdravo svijete!",Bulgarian: "Здравей, свят!",Catalan: "Hola món!",Chinese: "世界您好!",Croatian: "zdravo svijete!",Czech: "Ahoj světe!",Danish: "Hej verden!",Dutch: "Hallo mensen!",English: "Hello World!",Estonian: "Tere maailm!",Finnish: "Moi maailma!",French: "Salut tout le monde!",German: "Hallo Welt!",Greek: "Γεια σου κόσμε!",Haitian: "Bonjou mond la!",Hebrew: "שלום לך עולם!",Hindi: "हैलो वर्ल्ड!","Hmong Daw": "nyob zoo, lub ntiaj teb!",Hungarian: "helló világ!",Indonesian: "Halo dunia!",Italian: "Salve, mondo!",Japanese: "ハローワールド!",Kiswahili: "Vipi dunia!",Klingon: "qo' vIvan!",Korean: "전 세계 여러분 안녕하세요!",Latvian: "sveika, pasaule!",Lithuanian: "sveikas, pasauli!",Malay: "helo dunia!",Maltese: "bonġu dinja!","Yucatec Maya": "Hola yóok'ol kaaba'!",Norwegian: "hallo verden!",Persian: "سلام به دنیا!",Polish: "Cześć ludzie!",Portuguese: "Olá, mundo!",Romanian: "bună oameni buni!",Russian: "Здравствуй, Мир!",Serbian: "здраво свете!",Slovak: "čaute všetci!",Slovenian: "pozdravljeni vsi skupaj!",Spanish: "¡Hola mundo!",Swedish: "Hej världen!",Thai: "หวัดดีชาวโลก!",Turkish: "Merhaba Dünya!",Ukrainian: "Вітаю, світ!",Urdu: "سلام دنيا!",Vietnamese: "Chào thế giới!",Welsh: "helo byd!"};
+
+(function makeDiv(){
+var keys = Object.keys(langs);
+var currentLang = Math.floor(Math.random() * keys.length);
+var fullText = "<br/>"+keys[currentLang] + " : <br/>" +langs[keys[currentLang]];
+    var divsize = ((Math.random()*100) + 200).toFixed();
+    var color = '#'+ Math.round(0xffffff * Math.random()).toString(16);
+    var textColor = '#'+ Math.round(0xffffff * Math.random()).toString(16);
+    $newdiv = $('<div/>').css({
+        'width':divsize*1.5+'px',
+        'height':divsize+'px',
+        'background-color': color,
+        'color': textColor,
+        'text-align': 'center',
+        'font-size': divsize/5
+    });
+    
+    var posx = (Math.random() * ($(document).width() - divsize-100)).toFixed();
+    var posy = (Math.random() * ($(document).height() - divsize)).toFixed();
+    
+    $newdiv.css({
+        'position':'absolute',
+        'left':posx+'px',
+        'top':posy+'px',
+        'display':'none',
+        'border-radius':'10px'
+    }).appendTo( 'body' ).html(fullText).fadeIn(300).delay(2000).fadeOut(300, function(){
+       $(this).remove();
+       currentLang = Math.floor(Math.random() * keys.length);
+       makeDiv(); 
+    }); 
+})();
+});
+  </script>
+</body>
+</html>
